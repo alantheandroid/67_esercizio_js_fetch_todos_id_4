@@ -1,9 +1,27 @@
 <html>
-  <body>
-    <div id="container" style="display: flex; align-items: center;"></div>
-  </body>
+
+<body>
+  <div id="container" style="display: flex; align-items: center;"></div>
+</body>
+
 </html>
 
 <script>
-  // code here
+  let todoContainer = document.getElementById("container");
+
+  appendElements = (item) => {
+    let titleHeader = document.createElement("h2");
+    titleHeader.innerText = item.title;
+
+    let inputCheckbox = document.createElement("input");
+    inputCheckbox.setAttribute("type", "checkbox");
+    inputCheckbox.setAttribute("checked", item.completed);
+
+    todoContainer.append(titleHeader, inputCheckbox);
+  }
+
+  fetch("https://jsonplaceholder.typicode.com/todos/4")
+    .then((response) => response.json())
+    .then((todoItem) => appendElements(todoItem))
+
 </script>
